@@ -1,0 +1,35 @@
+<section>
+  <h2>Lista de Tareas</h2>
+
+  <!-- Formulario para Agregar Tareas -->
+  <input [(ngModel)]="newTodo" placeholder="New Tarea" />
+  <button (click)="addTodo()">Agregar</button>
+
+  <!-- Lista de Tareas -->
+  <h3>Tareas por hacer</h3>
+  <ul>
+    <li *ngFor="let todo of todos">
+      <span
+        className="todo-list"
+        [ngClass]="{ completed: todo.completed }"
+        (click)="toggleTodo(todo.id)"
+      >
+        {{ todo.title }}
+      </span>
+      @if (todo.completed!) {
+        <button (click)="deleteTodo(todo.id)">Eliminar</button>
+      }
+    </li>
+  </ul>
+
+  <!-- Tareas Eliminadas-->
+  <h3>Tareas Eliminadas</h3>
+  <ul>
+    @for (todo of todosdeleted; track todo.id) {
+    <li>
+      {{ todo.title }}
+      <button (click)="restoreTodo(todo.id)">Restaurar</button>
+    </li>
+    }
+  </ul>
+</section>
